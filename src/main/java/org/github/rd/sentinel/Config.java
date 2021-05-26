@@ -32,6 +32,10 @@ import java.util.List;
 
 //设置线程的代码块 org.springframework.boot.autoconfigure.web.embedded.TomcatWebServerFactoryCustomizer.customizeMaxThreads
 //容器初始化的入口 EmbeddedWebServerFactoryCustomizerAutoConfiguration
+//springboot 直接集成netty https://www.jianshu.com/p/b60180a0a0e6
+//zookeeper三个端口https://www.cnblogs.com/yougewe/p/11728073.html
+//AdminServerFactory
+//netty的资源配置ReactorResourceFactory，线程配置LoopResources
 @Configuration
 public class Config {
 
@@ -61,7 +65,7 @@ public class Config {
     @PreDestroy
     public void stop() {
         this.http1.stop();
-    }*/
+    }
 
     @Bean
     public TomcatServletWebServerFactory tomcatServletWebServerFactory() {
@@ -77,6 +81,6 @@ public class Config {
         tomcat.addAdditionalTomcatConnectors(connectors.toArray(connectors.toArray(new Connector[] {})));
         tomcat.setPort(9999);
         return tomcat;
-    }
+    }*/
 
 }
