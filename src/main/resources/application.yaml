@@ -1,0 +1,16 @@
+management:
+  security:
+    enabled: false
+    #prometheus+grafana+springboot2监控集成配置
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+      jmx:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+      #prometheus+grafana+springboot2监控集成配置
+
