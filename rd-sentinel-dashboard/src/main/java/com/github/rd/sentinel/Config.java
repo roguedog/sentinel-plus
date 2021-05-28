@@ -1,7 +1,6 @@
-package org.github.rd.sentinel;
+package com.github.rd.sentinel;
 
 import io.netty.channel.ChannelOption;
-import org.apache.catalina.connector.Connector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.embedded.netty.NettyReactiveWebServerFactory;
 import org.springframework.boot.web.embedded.netty.NettyServerCustomizer;
@@ -65,9 +64,9 @@ public class Config {
     @PreDestroy
     public void stop() {
         this.http1.stop();
-    }
+    }*/
 
-    @Bean
+    /*@Bean
     public TomcatServletWebServerFactory tomcatServletWebServerFactory() {
         TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory(1111);
         int[] ports = {8000, 8100};
