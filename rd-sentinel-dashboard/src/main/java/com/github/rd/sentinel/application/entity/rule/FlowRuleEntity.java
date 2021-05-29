@@ -7,7 +7,7 @@ import com.alibaba.csp.sentinel.slots.block.flow.FlowRule;
 import java.util.Date;
 
 /**
- * @author leyou
+ * 
  */
 public class FlowRuleEntity implements RuleEntity {
 

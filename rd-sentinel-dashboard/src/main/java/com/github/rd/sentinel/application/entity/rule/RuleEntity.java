@@ -6,7 +6,7 @@ import com.alibaba.csp.sentinel.slots.block.Rule;
 import java.util.Date;
 
 /**
- * @author leyou
+ * 
  */
 public interface RuleEntity {
 

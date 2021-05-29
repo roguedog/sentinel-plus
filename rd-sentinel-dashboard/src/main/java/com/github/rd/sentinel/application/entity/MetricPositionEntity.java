@@ -4,7 +4,7 @@ package com.github.rd.sentinel.application.entity;
 import java.util.Date;
 
 /**
- * @author leyou
+ * 
  */
 public class MetricPositionEntity {
     private long id;

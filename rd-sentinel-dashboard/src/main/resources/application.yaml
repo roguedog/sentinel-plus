@@ -18,3 +18,6 @@ server:
 spring:
   application:
     name: rd-sentinel
+
+rd-sentinel-dashboard:
+  metric: fds

@@ -25,7 +25,7 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * Fetch metric of local.
  *
- * @author leyou
+ * 
  */
 @Component
 public class LocalDashboardMetricFetcherService {
