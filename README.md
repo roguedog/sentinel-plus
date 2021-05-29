@@ -1,0 +1,1 @@
+持久dashboard本地的指标，请参考SendMetricCommandHandler

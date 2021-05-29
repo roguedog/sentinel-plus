@@ -13,4 +13,8 @@ management:
       exposure:
         include: '*'
       #prometheus+grafana+springboot2监控集成配置
-
+server:
+  port: 9999
+spring:
+  application:
+    name: rd-sentinel
