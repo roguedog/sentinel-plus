@@ -8,16 +8,16 @@ import com.alibaba.csp.sentinel.node.metric.MetricNode;
 import com.alibaba.csp.sentinel.util.StringUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.github.rd.sentinel.application.entity.MetricEntity;
+import com.github.rd.sentinel.infrastructure.config.LocalMetricProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.nio.charset.Charset;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.ThreadPoolExecutor.DiscardPolicy;
 import java.util.concurrent.atomic.AtomicLong;
@@ -33,58 +33,58 @@ public class LocalDashboardMetricFetcherService {
     @Resource
     private LocalMetricSearcher localMetricSearcher;
 
+    private long fetchIntervalMillis;
+
     public static final String NO_METRICS = "No metrics";
-    private static final long MAX_LAST_FETCH_INTERVAL_MS = 1000 * 15;
-    private static final long FETCH_INTERVAL_SECOND = 6;
-    private static final Charset DEFAULT_CHARSET = Charset.forName(SentinelConfig.charset());
     private static Logger logger = LoggerFactory.getLogger(LocalDashboardMetricFetcherService.class);
-    private final long intervalSecond = 1;
     private String appName = "sentinel-dashboard";
 
     private Map<String, AtomicLong> appLastFetchTime = new ConcurrentHashMap<>();
+    private AtomicLong lastFetchTime = new AtomicLong(System.currentTimeMillis());
 
     @SuppressWarnings("PMD.ThreadPoolCreationRule")
     private ExecutorService fetchWorker;
 
-    public LocalDashboardMetricFetcherService() {
+    @Autowired
+    public LocalDashboardMetricFetcherService(LocalMetricProperties localMetricProperties) {
+        this.fetchIntervalMillis = localMetricProperties.getFetchIntervalSeconds() * 1000;
         int corePoolSize = 1;
         int maxPoolSize = 5;
         long keepAliveTime = 0;
         int queueSize = 50;
         RejectedExecutionHandler handler = new DiscardPolicy();
         fetchWorker = new ThreadPoolExecutor(corePoolSize, maxPoolSize,
-            keepAliveTime, TimeUnit.MILLISECONDS, new ArrayBlockingQueue<>(queueSize),
-            new NamedThreadFactory("lmw"), handler);
+                keepAliveTime, TimeUnit.MILLISECONDS, new ArrayBlockingQueue<>(queueSize),
+                new NamedThreadFactory("lmw"), handler);
     }
 
     public void fetch() {
+        long startTime = lastFetchTime.get();
+        long endTime = startTime + fetchIntervalMillis;
         long now = System.currentTimeMillis();
-        long lastFetchMs = now - MAX_LAST_FETCH_INTERVAL_MS;
-        if (appLastFetchTime.containsKey(appName)) {
-            lastFetchMs = Math.max(lastFetchMs, appLastFetchTime.get(appName).get() + 1000);
-        }
-        // trim milliseconds
-        lastFetchMs = lastFetchMs / 1000 * 1000;
-        long endTime = lastFetchMs + FETCH_INTERVAL_SECOND * 1000;
-        if (endTime > now - 1000 * 2) {
-            // to near
+
+        if (endTime > now - 2000) {
+            System.out.println("结束时间与当前时间接近,放弃执行");
             return;
         }
+
+        System.out.println("时间间隔"+(endTime - startTime));
+        System.out.println("$与当前时间的差距"+(now - endTime));
         // update last_fetch in advance.
-        appLastFetchTime.computeIfAbsent(appName, a -> new AtomicLong()).set(endTime);
-        final long finalLastFetchMs = lastFetchMs;
+        lastFetchTime.set(endTime);
+        final long finalStartTime = startTime;
         final long finalEndTime = endTime;
         try {
             // do real fetch async
             fetchWorker.submit(() -> {
                 try {
-                    fetchOnce(finalLastFetchMs, finalEndTime);
+                    fetchOnce(finalStartTime, finalEndTime);
                 } catch (Exception e) {
                     logger.info("fetchOnce(" + appName + ") error", e);
                 }
             });
         } catch (Exception e) {
-            logger.info("submit fetchOnce(" + appName + ") fail, intervalMs [" + lastFetchMs + ", " + endTime + "]", e);
+            logger.info("submit fetchOnce(" + appName + ") fail, intervalMs [" + startTime + ", " + endTime + "]", e);
         }
     }
 

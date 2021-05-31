@@ -20,4 +20,5 @@ spring:
     name: rd-sentinel
 
 rd-sentinel-dashboard:
-  metric: fds
+  local-metric:
+    fetch-interval-seconds: 2
