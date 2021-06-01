@@ -21,4 +21,4 @@ spring:
 
 rd-sentinel-dashboard:
   local-metric:
-    fetch-interval-seconds: 2
+    fetch-interval-seconds: 6
