@@ -2,7 +2,6 @@ package com.github.rd.sentinel.application.resource;
 
 import com.alibaba.csp.sentinel.Constants;
 import com.alibaba.csp.sentinel.adapter.spring.webflux.SentinelWebFluxFilter;
-import com.alibaba.csp.sentinel.adapter.spring.webflux.callback.WebFluxCallbackManager;
 import com.alibaba.csp.sentinel.adapter.spring.webflux.exception.SentinelBlockExceptionHandler;
 import com.alibaba.csp.sentinel.concurrent.NamedThreadFactory;
 import com.alibaba.csp.sentinel.config.SentinelConfig;
@@ -69,6 +68,17 @@ public class DashboardResourceManager {
             this.serverCodecConfigurer = serverCodecConfigurer;
         }
 
+        public void initRule() {
+            List<FlowRule> rules = new ArrayList<>();
+            FlowRule rule = new FlowRule();
+            rule.setResource("/admin/*");
+            rule.setGrade(RuleConstant.FLOW_GRADE_QPS);
+            // Set limit QPS.
+            rule.setCount(100);
+            rules.add(rule);
+            FlowRuleManager.loadRules(rules);
+        }
+
         @Bean
         @Order(-1)
         public SentinelBlockExceptionHandler sentinelBlockExceptionHandler() {
@@ -79,23 +89,6 @@ public class DashboardResourceManager {
         @Bean
         @Order(-1)
         public SentinelWebFluxFilter sentinelWebFluxFilter() {
-            WebFluxCallbackManager.setUrlCleaner((serverWebExchange, path) -> {
-                if (path == null || path.isEmpty()) {
-                    return path;
-                }
-                if (path.startsWith("/admin/")) {
-                    return "/admin/*";
-                }
-                return path;
-            });
-            List<FlowRule> rules = new ArrayList<>();
-            FlowRule rule = new FlowRule();
-            rule.setResource("/admin/*");
-            rule.setGrade(RuleConstant.FLOW_GRADE_QPS);
-            // Set limit QPS.
-            rule.setCount(100);
-            rules.add(rule);
-            FlowRuleManager.loadRules(rules);
             // Register the Sentinel WebFlux filter.
             return new SentinelWebFluxFilter();
         }
@@ -104,8 +97,6 @@ public class DashboardResourceManager {
 
     /**
      * Fetch metric of local.
-     *
-     *
      */
     @Slf4j
     private static class LocalDashboardMetricFetcherService {

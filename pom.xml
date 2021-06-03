@@ -11,6 +11,8 @@
     <modules>
         <module>rd-sentinel-dashboard</module>
         <module>rd-sentinel-client</module>
+        <module>rd-sentinel-dashboard-metric-fetcher</module>
+        <module>rd-sentinel-dashboard-metric-writer</module>
     </modules>
 
     <parent>
