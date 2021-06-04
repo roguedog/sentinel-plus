@@ -13,6 +13,7 @@
         <module>rd-sentinel-client</module>
         <module>rd-sentinel-dashboard-metric-fetcher</module>
         <module>rd-sentinel-dashboard-metric-writer</module>
+        <module>rd-sentinel-dashboard-rule-datasource</module>
     </modules>
 
     <parent>

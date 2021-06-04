@@ -14,7 +14,7 @@ management:
         include: '*'
       #prometheus+grafana+springboot2监控集成配置
 server:
-  port: 9999
+  port: 11110
 spring:
   application:
     name: rd-sentinel-dashboard
