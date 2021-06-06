@@ -7,9 +7,9 @@ import org.springframework.boot.web.embedded.jetty.JettyServletWebServerFactory;
 import org.springframework.boot.web.embedded.netty.NettyReactiveWebServerFactory;
 
 @SpringBootApplication
-public class App {
+public class DataSourceApp {
     public static void main(String[] args) {
-        SpringApplication.run(App.class, args);
+        SpringApplication.run(DataSourceApp.class, args);
 //        runJettyServer();
     }
 
