@@ -1,7 +1,7 @@
-package com.github.rd.sentinel.entrypoint.scheduler;
+package com.github.rd.sentinel.dashboard.common.entrypoint.scheduler;
 
 import com.alibaba.csp.sentinel.concurrent.NamedThreadFactory;
-import com.github.rd.sentinel.application.resource.DashboardResourceManager;
+import com.github.rd.sentinel.dashboard.common.application.resource.DashboardResourceManager;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;

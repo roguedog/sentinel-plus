@@ -1,10 +1,10 @@
 
-package com.github.rd.sentinel.application.entity;
+package com.github.rd.sentinel.dashboard.common.application.entity;
 
 import java.util.Date;
 
 /**
- * 
+ *
  */
 public class MetricEntity {
     private Long id;

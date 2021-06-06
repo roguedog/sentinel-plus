@@ -14,6 +14,7 @@
         <module>rd-sentinel-dashboard-metric-fetcher</module>
         <module>rd-sentinel-dashboard-metric-writer</module>
         <module>rd-sentinel-dashboard-rule-datasource</module>
+        <module>rd-sentinel-dashboard-common</module>
     </modules>
 
     <parent>
@@ -32,6 +33,11 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.github.roguedog</groupId>
+                <artifactId>rd-sentinel-dashboard-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <dependency>
                 <groupId>com.github.roguedog</groupId>
                 <artifactId>rd-sentinel-dashboard-rule-datasource</artifactId>

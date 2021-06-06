@@ -1,4 +1,4 @@
-package com.github.rd.sentinel.application.resource;
+package com.github.rd.sentinel.dashboard.common.application.resource;
 
 import com.alibaba.csp.sentinel.Constants;
 import com.alibaba.csp.sentinel.adapter.spring.webflux.SentinelWebFluxFilter;
@@ -16,8 +16,7 @@ import com.alibaba.csp.sentinel.util.PidUtil;
 import com.alibaba.csp.sentinel.util.StringUtil;
 import com.alibaba.csp.sentinel.util.TimeUtil;
 import com.alibaba.fastjson.JSONObject;
-import com.github.rd.sentinel.application.entity.MetricEntity;
-import com.github.rd.sentinel.infrastructure.config.DashboardResourceManagerProperties;
+import com.github.rd.sentinel.dashboard.common.application.entity.MetricEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +61,7 @@ public class DashboardResourceManager {
         private final List<ViewResolver> viewResolvers;
         private final ServerCodecConfigurer serverCodecConfigurer;
 
+        @Autowired
         public WebFluxSentinelConfig(ObjectProvider<List<ViewResolver>> viewResolversProvider,
                                      ServerCodecConfigurer serverCodecConfigurer) {
             this.viewResolvers = viewResolversProvider.getIfAvailable(Collections::emptyList);

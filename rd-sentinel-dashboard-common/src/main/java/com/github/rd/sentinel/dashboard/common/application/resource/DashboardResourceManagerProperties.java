@@ -1,5 +1,4 @@
-package com.github.rd.sentinel.infrastructure.config;
-
+package com.github.rd.sentinel.dashboard.common.application.resource;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.ConfigurationProperties;
