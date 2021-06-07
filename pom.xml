@@ -21,6 +21,8 @@
         <projectlombok.version>1.18.20</projectlombok.version>
         <prometheus.version>1.5.1</prometheus.version>
         <common-lang3.version>3.12.0</common-lang3.version>
+        <spring-boot-maven-plugin.version>2.5.0</spring-boot-maven-plugin.version>
+
     </properties>
 
 </project>
