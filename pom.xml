@@ -11,6 +11,7 @@
     <modules>
         <module>rd-sentinel-dashboard</module>
         <module>rd-sentinel-client</module>
+        <module>rd-sentinel-demo</module>
     </modules>
 
     <properties>
