@@ -11,79 +11,16 @@
     <modules>
         <module>rd-sentinel-dashboard</module>
         <module>rd-sentinel-client</module>
-        <module>rd-sentinel-dashboard-metric-fetcher</module>
-        <module>rd-sentinel-dashboard-metric-writer</module>
-        <module>rd-sentinel-dashboard-rule-datasource</module>
-        <module>rd-sentinel-dashboard-common</module>
     </modules>
-
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.5.0</version>
-    </parent>
-
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <sentinel.version>1.8.1</sentinel.version>
         <fastjson.version>1.2.75</fastjson.version>
+        <projectlombok.version>1.18.20</projectlombok.version>
+        <prometheus.version>1.5.1</prometheus.version>
+        <common-lang3.version>3.12.0</common-lang3.version>
     </properties>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.github.roguedog</groupId>
-                <artifactId>rd-sentinel-dashboard-common</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.roguedog</groupId>
-                <artifactId>rd-sentinel-dashboard-rule-datasource</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.roguedog</groupId>
-                <artifactId>rd-sentinel-dashboard-metric-writer</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.roguedog</groupId>
-                <artifactId>rd-sentinel-dashboard-metric-fetcher</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.micrometer</groupId>
-                <artifactId>micrometer-registry-prometheus</artifactId>
-                <version>1.5.1</version>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba.csp</groupId>
-                <artifactId>sentinel-spring-webflux-adapter</artifactId>
-                <version>${sentinel.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba.csp</groupId>
-                <artifactId>sentinel-parameter-flow-control</artifactId>
-                <version>${sentinel.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba.csp</groupId>
-                <artifactId>sentinel-api-gateway-adapter-common</artifactId>
-                <version>${sentinel.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>fastjson</artifactId>
-                <version>${fastjson.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>1.18.20</version>
-                <scope>provided</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 </project>
