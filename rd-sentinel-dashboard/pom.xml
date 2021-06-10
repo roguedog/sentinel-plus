@@ -17,6 +17,7 @@
         <module>rd-sentinel-dashboard-rule-datasource</module>
         <module>rd-sentinel-dashboard-common</module>
         <module>rd-sentinel-dashboard-all</module>
+        <module>rd-sentinel-dashboard-core</module>
     </modules>
 
     <properties>

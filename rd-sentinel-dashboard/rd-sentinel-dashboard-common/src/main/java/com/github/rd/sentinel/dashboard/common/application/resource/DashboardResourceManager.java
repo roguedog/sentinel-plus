@@ -20,6 +20,7 @@ import com.github.rd.sentinel.dashboard.common.application.entity.MetricEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -320,6 +321,27 @@ public class DashboardResourceManager {
             node.setTimestamp(ts);
             node.setResource(resource);
             return node;
+        }
+    }
+
+    @Component
+    @ConfigurationProperties("rd-sentinel-dashboard.dashboard-service-manager")
+    @Slf4j
+    public static class DashboardResourceManagerProperties {
+        /**
+         * 拉取指标的间隔
+         */
+        private int fetchMetricIntervalSeconds;
+
+        public int getFetchMetricIntervalSeconds() {
+            return fetchMetricIntervalSeconds;
+        }
+
+        public void setFetchMetricIntervalSeconds(int fetchMetricIntervalSeconds) {
+            if (fetchMetricIntervalSeconds < 3 || fetchMetricIntervalSeconds >8) {
+                throw new IllegalArgumentException("3 <= rd-sentinel-dashboard.local-metric.fetch-interval-seconds >= 7");
+            }
+            this.fetchMetricIntervalSeconds = fetchMetricIntervalSeconds;
         }
     }
 }
