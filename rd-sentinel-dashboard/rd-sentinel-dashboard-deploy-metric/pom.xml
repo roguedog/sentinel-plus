@@ -9,9 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>rd-sentinel-dashboard-deploy-all</artifactId>
-    <packaging>jar</packaging>
-
+    <artifactId>rd-sentinel-dashboard-deploy-metric</artifactId>
     <dependencies>
         <dependency>
             <groupId>com.github.roguedog.sentinel</groupId>
@@ -33,7 +31,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot-maven-plugin.version}</version>
                 <configuration>
-                    <mainClass>com.github.rd.sentinel.dashboard.DashboardAllApp</mainClass>
+                    <mainClass>com.github.rd.sentinel.dashboard.DashboardMetricApp</mainClass>
                     <layout>ZIP</layout>
                 </configuration>
                 <executions>

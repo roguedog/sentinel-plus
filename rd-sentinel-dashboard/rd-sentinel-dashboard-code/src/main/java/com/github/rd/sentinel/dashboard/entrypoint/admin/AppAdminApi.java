@@ -26,7 +26,7 @@ public class AppAdminApi {
         return Mono.just("get");
     }
 
-    @GetMapping("/get1")
+    @GetMapping("")
     public Mono<String> get1() {
         return Mono.just("get");
     }

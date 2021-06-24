@@ -6,13 +6,13 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan(value = {
-        "com.github.rd.sentinel.dashboard.entrypoint.admin",
+        "com.github.rd.sentinel.dashboard.entrypoint.metric",
         "com.github.rd.sentinel.dashboard.entrypoint.common",
         "com.github.rd.sentinel.dashboard.application",
         "com.github.rd.sentinel.dashboard.infrastructure"
 })
-public class DashboardAdminApp {
+public class DashboardMetricApp {
     public static void main(String[] args) {
-        SpringApplication.run(DashboardAdminApp.class, args);
+        SpringApplication.run(DashboardMetricApp.class, args);
     }
 }
