@@ -1,5 +1,7 @@
 package com.github.rd.sentinel.dashboard.entrypoint.metric;
 
+import com.github.rd.sentinel.dashboard.infrastructure.config.properties.MetricServerProperties;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/register")
+@ConditionalOnExpression(MetricServerProperties.ENABLED_EXPRESSION)
 public class RegisterApi {
 
     @GetMapping

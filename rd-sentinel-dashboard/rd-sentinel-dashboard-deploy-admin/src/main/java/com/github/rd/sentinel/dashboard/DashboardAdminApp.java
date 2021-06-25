@@ -1,6 +1,5 @@
 package com.github.rd.sentinel.dashboard;
 
-import com.github.rd.sentinel.dashboard.entrypoint.admin.ScanTest;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;

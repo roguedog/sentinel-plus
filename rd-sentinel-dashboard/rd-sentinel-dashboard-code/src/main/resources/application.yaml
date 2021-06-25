@@ -17,8 +17,17 @@ server:
   port: 11110
 
 rd-sentinel-dashboard:
-  dashboard-service-manager:
-    fetch-metric-interval-seconds: 6
+  test: 11
+  admin-server:
+    fds: fd
+  rule-server:
+    enabled: true
+  metric-server:
+    enabled: true
+    push-mode:
+      enabled: true
+    pull-mode:
+      enabled: true
 
 spring:
   application:
