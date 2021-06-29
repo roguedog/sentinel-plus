@@ -82,7 +82,7 @@ public class DashboardConfig {
 
     protected static int getConfigInt(String name, int defaultVal, int minVal) {
         if (cacheMap.containsKey(name)) {
-            return (int)cacheMap.get(name);
+            return (int) cacheMap.get(name);
         }
         int val = Integer.valueOf(getConfig(name));
         if (val == 0) {

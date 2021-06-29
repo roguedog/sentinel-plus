@@ -1,3 +1,15 @@
+rd-sentinel-dashboard:
+  admin-server:
+    fds: fd
+  rule-server:
+    enabled: true
+  metric-server:
+    enabled: true
+    push-mode:
+      enabled: true
+    pull-mode:
+      enabled: true
+
 management:
   security:
     enabled: false
@@ -15,19 +27,6 @@ management:
       #prometheus+grafana+springboot2监控集成配置
 server:
   port: 11110
-
-rd-sentinel-dashboard:
-  test: 11
-  admin-server:
-    fds: fd
-  rule-server:
-    enabled: true
-  metric-server:
-    enabled: true
-    push-mode:
-      enabled: true
-    pull-mode:
-      enabled: true
 
 spring:
   application:

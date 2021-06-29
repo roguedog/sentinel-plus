@@ -17,9 +17,11 @@ import com.alibaba.csp.sentinel.util.StringUtil;
 import com.alibaba.csp.sentinel.util.TimeUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.github.rd.sentinel.dashboard.application.entity.MetricEntity;
+import com.github.rd.sentinel.dashboard.entrypoint.common.LocalBashboardMetricEntryPoint;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -34,6 +36,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 @Component
 @Slf4j
+@ConditionalOnBean({LocalBashboardMetricEntryPoint.LocalDashboardMetricFetchSchedule.class})
 public class DashboardResourceManager {
     private ScheduledExecutorService scheduleService = Executors.newScheduledThreadPool(1, new NamedThreadFactory("lms"));
     private LocalDashboardMetricFetcherService localDashboardMetricFetcherService;
@@ -141,8 +144,8 @@ public class DashboardResourceManager {
                 return;
             }
 
-            System.out.println("时间间隔"+(endTime - startTime));
-            System.out.println("$与当前时间的差距"+(now - endTime));
+            System.out.println("时间间隔" + (endTime - startTime));
+            System.out.println("$与当前时间的差距" + (now - endTime));
             // update last_fetch in advance.
             lastFetchTime.set(endTime);
             final long finalStartTime = startTime;
@@ -171,7 +174,7 @@ public class DashboardResourceManager {
                 entity.setGmtModified(date);
             }
             //  todo 持久化
-            System.out.println("todo 拉取本地指标，待持久化"+ JSONObject.toJSON(map));
+            System.out.println("todo 拉取本地指标，待持久化" + JSONObject.toJSON(map));
         }
 
         private void fetchOnce(long startTime, long endTime) {
@@ -233,9 +236,9 @@ public class DashboardResourceManager {
         }
 
         private static final Set<String> RES_EXCLUSION_SET = new HashSet<String>() {{
-           add(Constants.TOTAL_IN_RESOURCE_NAME);
-           add(Constants.SYSTEM_LOAD_RESOURCE_NAME);
-           add(Constants.CPU_USAGE_RESOURCE_NAME);
+            add(Constants.TOTAL_IN_RESOURCE_NAME);
+            add(Constants.SYSTEM_LOAD_RESOURCE_NAME);
+            add(Constants.CPU_USAGE_RESOURCE_NAME);
         }};
 
     }
@@ -259,7 +262,7 @@ public class DashboardResourceManager {
                     }
                     if (searcher == null) {
                         searcher = new MetricSearcher(MetricWriter.METRIC_BASE_DIR,
-                            MetricWriter.formMetricFileName(appName, PidUtil.getPid()));
+                                MetricWriter.formMetricFileName(appName, PidUtil.getPid()));
                     }
                 }
             }
@@ -321,7 +324,7 @@ public class DashboardResourceManager {
          */
         private MetricNode toNode(double value, long ts, String resource) {
             MetricNode node = new MetricNode();
-            node.setPassQps((long)(value * 10000));
+            node.setPassQps((long) (value * 10000));
             node.setTimestamp(ts);
             node.setResource(resource);
             return node;
@@ -338,7 +341,7 @@ public class DashboardResourceManager {
         private int fetchMetricIntervalSeconds = 6;
 
         public int getFetchMetricIntervalSeconds() {
-            if (fetchMetricIntervalSeconds < 3 || fetchMetricIntervalSeconds >8) {
+            if (fetchMetricIntervalSeconds < 3 || fetchMetricIntervalSeconds > 8) {
                 throw new IllegalArgumentException("3 <= rd-sentinel-dashboard.dashboard-service-manager.fetch-metric-interval-seconds >= 7");
             }
             return fetchMetricIntervalSeconds;

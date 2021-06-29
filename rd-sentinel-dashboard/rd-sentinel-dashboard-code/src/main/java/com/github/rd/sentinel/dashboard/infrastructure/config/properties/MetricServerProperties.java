@@ -30,6 +30,7 @@ public class MetricServerProperties {
 
 
     public static class PullMode {
+        public static final String ENABLED_EXPRESSION = "${rd-sentinel-dashboard.metric-server.pull-mode.enabled:false}";
         private boolean enabled;
 
         public boolean isEnabled() {
@@ -42,6 +43,7 @@ public class MetricServerProperties {
     }
 
     public static class PushMode {
+        public static final String ENABLED_EXPRESSION = "${rd-sentinel-dashboard.metric-server.push-mode.enabled:false}";
         private boolean enabled;
 
         public void setEnabled(boolean enabled) {
