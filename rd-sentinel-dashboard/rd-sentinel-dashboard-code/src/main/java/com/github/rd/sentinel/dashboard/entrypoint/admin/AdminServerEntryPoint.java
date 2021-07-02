@@ -28,4 +28,5 @@ public class AdminServerEntryPoint {
             return Mono.just("admin");
         }
     }
+
 }

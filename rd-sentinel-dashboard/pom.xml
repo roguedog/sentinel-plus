@@ -12,9 +12,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>rd-sentinel-dashboard-code</module>
-        <module>rd-sentinel-dashboard-deploy-admin</module>
-        <module>rd-sentinel-dashboard-deploy-all</module>
-        <module>rd-sentinel-dashboard-deploy-metric</module>
+        <module>rd-sentinel-dashboard-admin</module>
+        <module>rd-sentinel-dashbaord-server</module>
     </modules>
 
     <properties>

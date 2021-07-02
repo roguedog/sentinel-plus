@@ -1,14 +1,13 @@
-rd-sentinel-dashboard:
-  admin-server:
-    fds: fd
-  rule-server:
+admin:
+  enabled: true
+rule-server:
+  enabled: true
+metric-server:
+  enabled: true
+  push-mode:
     enabled: true
-  metric-server:
+  pull-mode:
     enabled: true
-    push-mode:
-      enabled: true
-    pull-mode:
-      enabled: true
 
 management:
   security:

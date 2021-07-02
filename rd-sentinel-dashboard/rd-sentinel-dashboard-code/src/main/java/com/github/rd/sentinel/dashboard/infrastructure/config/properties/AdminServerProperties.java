@@ -4,9 +4,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Component
-@ConfigurationProperties(prefix = "rd-sentinel-dashboard.admin-server")
+@ConfigurationProperties(prefix = "admin-server")
 public class AdminServerProperties {
-    public static final String ENABLED_EXPRESSION = "${rd-sentinel-dashboard.admin-server.enabled:false}";
+    public static final String ENABLED_EXPRESSION = "${admin.enabled:false}";
     private boolean enabled;
 
     public boolean isEnabled() {

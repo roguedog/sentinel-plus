@@ -4,9 +4,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Component
-@ConfigurationProperties(prefix = "rd-sentinel-dashboard.metric-server")
+@ConfigurationProperties(prefix = "metric-server")
 public class MetricServerProperties {
-    public static final String ENABLED_EXPRESSION = "${rd-sentinel-dashboard.metric-server.enabled:false}";
+    public static final String ENABLED_EXPRESSION = "${metric-server.enabled:false}";
     private boolean enabled;
 
     public void setEnabled(boolean enabled) {
@@ -30,7 +30,7 @@ public class MetricServerProperties {
 
 
     public static class PullMode {
-        public static final String ENABLED_EXPRESSION = "${rd-sentinel-dashboard.metric-server.pull-mode.enabled:false}";
+        public static final String ENABLED_EXPRESSION = "${metric-server.pull-mode.enabled:false}";
         private boolean enabled;
 
         public boolean isEnabled() {
@@ -43,7 +43,7 @@ public class MetricServerProperties {
     }
 
     public static class PushMode {
-        public static final String ENABLED_EXPRESSION = "${rd-sentinel-dashboard.metric-server.push-mode.enabled:false}";
+        public static final String ENABLED_EXPRESSION = "${metric-server.push-mode.enabled:false}";
         private boolean enabled;
 
         public void setEnabled(boolean enabled) {

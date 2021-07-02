@@ -12,6 +12,8 @@
         <module>rd-sentinel-client</module>
         <module>rd-sentinel-dashboard</module>
         <module>rd-sentinel-demo</module>
+        <module>rd-sentinel-client/rd-sentinel-rule-datasource</module>
+        <module>rd-sentinel-client/rd-sentinel-metric-push</module>
     </modules>
 
     <properties>

@@ -17,7 +17,7 @@ import com.alibaba.csp.sentinel.util.StringUtil;
 import com.alibaba.csp.sentinel.util.TimeUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.github.rd.sentinel.dashboard.application.entity.MetricEntity;
-import com.github.rd.sentinel.dashboard.entrypoint.common.LocalBashboardMetricEntryPoint;
+import com.github.rd.sentinel.dashboard.entrypoint.common.CommonEntryPoint;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +36,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 @Component
 @Slf4j
-@ConditionalOnBean({LocalBashboardMetricEntryPoint.LocalDashboardMetricFetchSchedule.class})
+@ConditionalOnBean({CommonEntryPoint.LocalDashboardMetricFetchSchedule.class})
 public class DashboardResourceManager {
     private ScheduledExecutorService scheduleService = Executors.newScheduledThreadPool(1, new NamedThreadFactory("lms"));
     private LocalDashboardMetricFetcherService localDashboardMetricFetcherService;
@@ -332,7 +332,7 @@ public class DashboardResourceManager {
     }
 
     @Component
-    @ConfigurationProperties("rd-sentinel-dashboard.dashboard-service-manager.fetch-metric-interval-seconds")
+    @ConfigurationProperties("dashboard-service-manager.fetch-metric-interval-seconds")
     @Slf4j
     public static class DashboardResourceManagerProperties {
         /**
@@ -342,7 +342,7 @@ public class DashboardResourceManager {
 
         public int getFetchMetricIntervalSeconds() {
             if (fetchMetricIntervalSeconds < 3 || fetchMetricIntervalSeconds > 8) {
-                throw new IllegalArgumentException("3 <= rd-sentinel-dashboard.dashboard-service-manager.fetch-metric-interval-seconds >= 7");
+                throw new IllegalArgumentException("3 <= dashboard-service-manager.fetch-metric-interval-seconds >= 7");
             }
             return fetchMetricIntervalSeconds;
         }

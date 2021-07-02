@@ -4,9 +4,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Component
-@ConfigurationProperties(prefix = "rd-sentinel-dashboard.rule-server")
+@ConfigurationProperties(prefix = "rule-server")
 public class RuleServerProperties {
-    public static final String ENABLED_EXPRESSION = "${rd-sentinel-dashboard.rule-server.enabled:false}";
+    public static final String ENABLED_EXPRESSION = "${rule-server.enabled:false}";
     private boolean enabled;
 
     public void setEnabled(boolean enabled) {

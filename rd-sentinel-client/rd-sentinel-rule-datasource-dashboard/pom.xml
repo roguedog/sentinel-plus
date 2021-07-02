@@ -6,20 +6,15 @@
         <artifactId>rd-sentinel</artifactId>
         <groupId>com.github.roguedog.sentinel</groupId>
         <version>1.0-SNAPSHOT</version>
+        <relativePath>../../pom.xml</relativePath>
     </parent>
-    <packaging>pom</packaging>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>rd-sentinel-client</artifactId>
+    <artifactId>rd-sentinel-rule-datasource</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
-
-    <modules>
-        <module>rd-sentinel-metric-push</module>
-        <module>rd-sentinel-rule-datasource-dashboard</module>
-    </modules>
 
 </project>
