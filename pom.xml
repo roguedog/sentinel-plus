@@ -14,6 +14,8 @@
         <module>rd-sentinel-demo</module>
         <module>rd-sentinel-client/rd-sentinel-rule-datasource</module>
         <module>rd-sentinel-client/rd-sentinel-metric-push</module>
+        <module>rd-sentinel-client/springboot-starter-rd-sentinel-metric-push</module>
+        <module>rd-sentinel-client-starter</module>
     </modules>
 
     <properties>
