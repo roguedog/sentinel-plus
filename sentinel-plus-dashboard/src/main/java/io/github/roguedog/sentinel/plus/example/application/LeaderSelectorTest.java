@@ -19,6 +19,10 @@ import java.util.List;
 public class LeaderSelectorTest implements ApplicationRunner {
     private static final String PATH = "/demo/leader";
 
+    public static void main(String[] args) {
+        start();
+    }
+
     public static void start() {
 
         List<LeaderSelector> selectors = new ArrayList<>();
@@ -39,7 +43,7 @@ public class LeaderSelectorTest implements ApplicationRunner {
 
                     @Override
                     public void stateChanged(CuratorFramework client, ConnectionState newState) {
-
+                        System.out.println("change");
                     }
                 });
 
@@ -48,6 +52,7 @@ public class LeaderSelectorTest implements ApplicationRunner {
                 selectors.add(leaderSelector);
 
             }
+            Thread.sleep(Integer.MAX_VALUE);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -59,11 +64,6 @@ public class LeaderSelectorTest implements ApplicationRunner {
                 CloseableUtils.closeQuietly(selector);
             }
 
-        }
-        try {
-            Thread.sleep(Integer.MAX_VALUE);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
     }
 
