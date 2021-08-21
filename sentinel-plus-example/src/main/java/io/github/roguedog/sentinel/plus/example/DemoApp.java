@@ -1,12 +1,11 @@
-package io.github.rd.sentinel;
+package io.github.roguedog.sentinel.plus.example;
 
-import io.github.roguedog.sentinel.plus.example.DashboardApp;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DashboardDevApplication {
+public class DemoApp {
     public static void main(String[] args) {
-        SpringApplication.run(DashboardApp.class, args);
+        SpringApplication.run(DemoApp.class, args);
     }
 }
